@@ -1,0 +1,895 @@
+
+Add preloader files
+
+@sandeshghimire
+sandeshghimire committed on 14 Jan 2014
+1 parent 5780a98 commit 29dccacb95fca4198d8a6091e611866c11222733
+Showing
+with 12,886 additions and 0 deletions.
+54 src/alt_types.h
+@@ -0,0 +1,54 @@
+#ifndef __ALT_TYPES_H__
+#define __ALT_TYPES_H__
+
+/******************************************************************************
+*                                                                             *
+* License Agreement                                                           *
+*                                                                             *
+* Copyright (c) 2003 Altera Corporation, San Jose, California, USA.           *
+* All rights reserved.                                                        *
+*                                                                             *
+* Permission is hereby granted, free of charge, to any person obtaining a     *
+* copy of this software and associated documentation files (the "Software"),  *
+* to deal in the Software without restriction, including without limitation   *
+* the rights to use, copy, modify, merge, publish, distribute, sublicense,    *
+* and/or sell copies of the Software, and to permit persons to whom the       *
+* Software is furnished to do so, subject to the following conditions:        *
+*                                                                             *
+* The above copyright notice and this permission notice shall be included in  *
+* all copies or substantial portions of the Software.                         *
+*                                                                             *
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR  *
+* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,    *
+* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE *
+* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER      *
+* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING     *
+* FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER         *
+* DEALINGS IN THE SOFTWARE.                                                   *
+*                                                                             *
+* This agreement shall be governed in all respects by the laws of the State   *
+* of California and by the laws of the United States of America.              *
+*                                                                             *
+* Altera does not recommend, suggest or require that this reference design    *
+* file be used in conjunction or combination with any other product.          *
+******************************************************************************/
+
+/* 
+ * Don't declare these typedefs if this file is included by assembly source.
+ */
+#ifndef ALT_ASM_SRC
+typedef signed char  alt_8;
+typedef unsigned char  alt_u8;
+typedef signed short alt_16;
+typedef unsigned short alt_u16;
+typedef signed long alt_32;
+typedef unsigned long alt_u32;
+typedef long long alt_64;
+typedef unsigned long long alt_u64;
+#endif
+
+#define ALT_INLINE        __inline__
+#define ALT_ALWAYS_INLINE __attribute__ ((always_inline))
+#define ALT_WEAK          __attribute__((weak))
+
+#endif /* __ALT_TYPES_H__ */
+164 src/emif.xml
+@@ -0,0 +1,164 @@
+<emif>
+    <sequencer>
+        <define name="AC_ROM_MR1_MIRR" value="0000000000110"/>
+        <define name="AC_ROM_MR1_OCD_ENABLE" value=""/>
+        <define name="AC_ROM_MR2_MIRR" value="0001000011000"/>
+        <define name="AC_ROM_MR3_MIRR" value="0000000000000"/>
+        <define name="AC_ROM_MR0_CALIB" value=""/>
+        <define name="AC_ROM_MR0_DLL_RESET_MIRR" value="0010011101000"/>
+        <define name="AC_ROM_MR0_DLL_RESET" value="0010101110000"/>
+        <define name="AC_ROM_MR0_MIRR" value="0010001101001"/>
+        <define name="AC_ROM_MR0" value="0010001110001"/>
+        <define name="AC_ROM_MR1" value="0000000000110"/>
+        <define name="AC_ROM_MR2" value="0001000011000"/>
+        <define name="AC_ROM_MR3" value="0000000000000"/>
+        <define name="AFI_CLK_FREQ" value="401"/>
+        <define name="AFI_RATE_RATIO" value="1"/>
+        <define name="ARRIAVGZ" value="0"/>
+        <define name="ARRIAV" value="0"/>
+        <define name="AVL_CLK_FREQ" value="81"/>
+        <define name="BFM_MODE" value="0"/>
+        <define name="BURST2" value="0"/>
+        <define name="CALIBRATE_BIT_SLIPS" value="0"/>
+        <define name="CALIB_LFIFO_OFFSET" value="11"/>
+        <define name="CALIB_VFIFO_OFFSET" value="9"/>
+        <define name="CYCLONEV" value="1"/>
+        <define name="DDR2" value="0"/>
+        <define name="DDR3" value="1"/>
+        <define name="DDRX" value="1"/>
+        <define name="DM_PINS_ENABLED" value="1"/>
+        <define name="ENABLE_ASSERT" value="0"/>
+        <define name="ENABLE_BRINGUP_DEBUGGING" value="0"/>
+        <define name="ENABLE_DQS_IN_CENTERING" value="1"/>
+        <define name="ENABLE_DQS_OUT_CENTERING" value="0"/>
+        <define name="ENABLE_EXPORT_SEQ_DEBUG_BRIDGE" value="0"/>
+        <define name="ENABLE_INST_ROM_WRITE" value="1"/>
+        <define name="ENABLE_MARGIN_REPORT_GEN" value="0"/>
+        <define name="ENABLE_NON_DESTRUCTIVE_CALIB" value="0"/>
+        <define name="ENABLE_SUPER_QUICK_CALIBRATION" value="0"/>
+        <define name="ENABLE_TCL_DEBUG" value="0"/>
+        <define name="FULL_RATE" value="1"/>
+        <define name="GUARANTEED_READ_BRINGUP_TEST" value="0"/>
+        <define name="HALF_RATE" value="0"/>
+        <define name="HARD_PHY" value="1"/>
+        <define name="HARD_VFIFO" value="1"/>
+        <define name="HCX_COMPAT_MODE" value="0"/>
+        <define name="HHP_HPS_SIMULATION" value="0"/>
+        <define name="HHP_HPS_VERIFICATION" value="0"/>
+        <define name="HHP_HPS" value="1"/>
+        <define name="HPS_HW" value="1"/>
+        <define name="HR_DDIO_OUT_HAS_THREE_REGS" value="0"/>
+        <define name="IO_DELAY_PER_DCHAIN_TAP" value="25"/>
+        <define name="IO_DELAY_PER_DQS_EN_DCHAIN_TAP" value="25"/>
+        <define name="IO_DELAY_PER_OPA_TAP" value="312"/>
+        <define name="IO_DLL_CHAIN_LENGTH" value="8"/>
+        <define name="IO_DM_OUT_RESERVE" value="0"/>
+        <define name="IO_DQDQS_OUT_PHASE_MAX" value="0"/>
+        <define name="IO_DQS_EN_DELAY_MAX" value="31"/>
+        <define name="IO_DQS_EN_DELAY_OFFSET" value="0"/>
+        <define name="IO_DQS_EN_PHASE_MAX" value="7"/>
+        <define name="IO_DQS_IN_DELAY_MAX" value="31"/>
+        <define name="IO_DQS_IN_RESERVE" value="4"/>
+        <define name="IO_DQS_OUT_RESERVE" value="4"/>
+        <define name="IO_DQ_OUT_RESERVE" value="0"/>
+        <define name="IO_IO_IN_DELAY_MAX" value="31"/>
+        <define name="IO_IO_OUT1_DELAY_MAX" value="31"/>
+        <define name="IO_IO_OUT2_DELAY_MAX" value="0"/>
+        <define name="IO_SHIFT_DQS_EN_WHEN_SHIFT_DQS" value="0"/>
+        <define name="LPDDR1" value="0"/>
+        <define name="LPDDR2" value="0"/>
+        <define name="LRDIMM" value="0"/>
+        <define name="MARGIN_VARIATION_TEST" value="0"/>
+        <define name="MAX_LATENCY_COUNT_WIDTH" value="5"/>
+        <define name="MEM_ADDR_WIDTH" value="13"/>
+        <define name="MULTIPLE_AFI_WLAT" value="0"/>
+        <define name="NUM_SHADOW_REGS" value="1"/>
+        <define name="QDRII" value="0"/>
+        <define name="QUARTER_RATE" value="0"/>
+        <define name="RDIMM" value="0"/>
+        <define name="READ_AFTER_WRITE_CALIBRATION" value="1"/>
+        <define name="READ_VALID_FIFO_SIZE" value="16"/>
+        <define name="REG_FILE_INIT_SEQ_SIGNATURE" value="0x55550482"/>
+        <define name="RLDRAM3" value="0"/>
+        <define name="RLDRAMII" value="0"/>
+        <define name="RLDRAMX" value="0"/>
+        <define name="RW_MGR_MEM_ADDRESS_MIRRORING" value="0"/>
+        <define name="RW_MGR_MEM_ADDRESS_WIDTH" value="15"/>
+        <define name="RW_MGR_MEM_BANK_WIDTH" value="3"/>
+        <define name="RW_MGR_MEM_CHIP_SELECT_WIDTH" value="1"/>
+        <define name="RW_MGR_MEM_CLK_EN_WIDTH" value="1"/>
+        <define name="RW_MGR_MEM_CONTROL_WIDTH" value="1"/>
+        <define name="RW_MGR_MEM_DATA_MASK_WIDTH" value="4"/>
+        <define name="RW_MGR_MEM_DATA_WIDTH" value="32"/>
+        <define name="RW_MGR_MEM_DQ_PER_READ_DQS" value="8"/>
+        <define name="RW_MGR_MEM_DQ_PER_WRITE_DQS" value="8"/>
+        <define name="RW_MGR_MEM_IF_READ_DQS_WIDTH" value="4"/>
+        <define name="RW_MGR_MEM_IF_WRITE_DQS_WIDTH" value="4"/>
+        <define name="RW_MGR_MEM_NUMBER_OF_CS_PER_DIMM" value="1"/>
+        <define name="RW_MGR_MEM_NUMBER_OF_RANKS" value="1"/>
+        <define name="RW_MGR_MEM_ODT_WIDTH" value="1"/>
+        <define name="RW_MGR_MEM_VIRTUAL_GROUPS_PER_READ_DQS" value="1"/>
+        <define name="RW_MGR_MEM_VIRTUAL_GROUPS_PER_WRITE_DQS" value="1"/>
+        <define name="RW_MGR_MR0_BL" value="1"/>
+        <define name="RW_MGR_MR0_CAS_LATENCY" value="7"/>
+        <define name="RW_MGR_TRUE_MEM_DATA_MASK_WIDTH" value="4"/>
+        <define name="RW_MGR_WRITE_TO_DEBUG_READ" value="1.0"/>
+        <define name="SKEW_CALIBRATION" value="0"/>
+        <define name="STATIC_FULL_CALIBRATION" value="1"/>
+        <define name="STATIC_SIM_FILESET" value="0"/>
+        <define name="STATIC_SKIP_MEM_INIT" value="0"/>
+        <define name="STRATIXV" value="0"/>
+        <define name="TRACKING_ERROR_TEST" value="0"/>
+        <define name="TRACKING_WATCH_TEST" value="0"/>
+        <define name="USE_DQS_TRACKING" value="1"/>
+        <define name="USE_SHADOW_REGS" value="0"/>
+    </sequencer>
+    <pll>
+        <define name="PLL_MEM_CLK_MULT" value="31"/>
+        <define name="PLL_MEM_CLK_DIV" value="0"/>
+        <define name="PLL_MEM_CLK_PHASE_DEG" value="0"/>
+        <define name="PLL_WRITE_CLK_MULT" value="31"/>
+        <define name="PLL_WRITE_CLK_DIV" value="0"/>
+        <define name="PLL_WRITE_CLK_PHASE_DEG" value="4"/>
+    </pll>
+    <controller>
+        <define name="AC_PARITY" value="false"/>
+        <define name="ADDR_ORDER" value="0"/>
+        <define name="CFG_TCCD" value="1"/>
+        <define name="DEVICE_DEPTH" value="1"/>
+        <define name="MEM_ASR" value="Manual"/>
+        <define name="MEM_ATCL_INT" value="0"/>
+        <define name="MEM_BT" value="Sequential"/>
+        <define name="MEM_BURST_LENGTH" value="8"/>
+        <define name="MEM_CK_WIDTH" value="1"/>
+        <define name="MEM_DQ_WIDTH" value="32"/>
+        <define name="MEM_DRV_STR" value="RZQ/7"/>
+        <define name="MEM_IF_BANKADDR_WIDTH" value="3"/>
+        <define name="MEM_IF_COL_ADDR_WIDTH" value="10"/>
+        <define name="MEM_IF_DM_PINS_EN" value="true"/>
+        <define name="MEM_IF_DQSN_EN" value="true"/>
+        <define name="MEM_IF_DQS_WIDTH" value="4"/>
+        <define name="MEM_IF_ROW_ADDR_WIDTH" value="15"/>
+        <define name="MEM_MIRROR_ADDRESSING" value="0"/>
+        <define name="MEM_PD" value="DLL off"/>
+        <define name="MEM_RTT_NOM" value="RZQ/4"/>
+        <define name="MEM_RTT_WR" value="RZQ/4"/>
+        <define name="MEM_SRT" value="Normal"/>
+        <define name="MEM_TCL" value="11"/>
+        <define name="MEM_TFAW" value="12"/>
+        <define name="MEM_TMRD_CK" value="4"/>
+        <define name="MEM_TRAS" value="14"/>
+        <define name="MEM_TRC" value="20"/>
+        <define name="MEM_TRCD" value="6"/>
+        <define name="MEM_TREFI" value="3120"/>
+        <define name="MEM_TRFC" value="104"/>
+        <define name="MEM_TRP" value="6"/>
+        <define name="MEM_TRRD" value="3"/>
+        <define name="MEM_TRTP" value="3"/>
+        <define name="MEM_TWR" value="6"/>
+        <define name="MEM_TWTR" value="4"/>
+        <define name="MEM_WTCL_INT" value="8"/>
+        <define name="PLL_MEM_CLK_FREQ" value="400.0"/>
+        <define name="USE_HPS_DQS_TRACKING" value="false"/>
+    </controller>
+</emif>
+131 src/hps.xml
+@@ -0,0 +1,131 @@
+<hps>
+  <peripherals>
+    <peripheral name='rgmii0' used='false' />
+    <peripheral name='rgmii1' used='true' />
+    <peripheral name='nand' used='false' />
+    <peripheral name='qspi' used='true'>
+      <config name='CONFIG_HPS_QSPI_CS3' value='0' />
+      <config name='CONFIG_HPS_QSPI_CS2' value='0' />
+      <config name='CONFIG_HPS_QSPI_CS1' value='0' />
+      <config name='CONFIG_HPS_QSPI_CS0' value='1' />
+    </peripheral>
+    <peripheral name='sdmmc' used='true'>
+      <config name='CONFIG_HPS_SDMMC_BUSWIDTH' value='4' />
+    </peripheral>
+    <peripheral name='usb0' used='false' />
+    <peripheral name='usb1' used='true' />
+    <peripheral name='spim0' used='true' />
+    <peripheral name='spim1' used='true' />
+    <peripheral name='spis0' used='false' />
+    <peripheral name='spis1' used='false' />
+    <peripheral name='uart0' used='true'>
+      <config name='CONFIG_HPS_UART0_TX' value='1' />
+      <config name='CONFIG_HPS_UART0_CTS' value='0' />
+      <config name='CONFIG_HPS_UART0_RTS' value='0' />
+      <config name='CONFIG_HPS_UART0_RX' value='1' />
+    </peripheral>
+    <peripheral name='uart1' used='false'>
+      <config name='CONFIG_HPS_UART1_TX' value='0' />
+      <config name='CONFIG_HPS_UART1_CTS' value='0' />
+      <config name='CONFIG_HPS_UART1_RTS' value='0' />
+      <config name='CONFIG_HPS_UART1_RX' value='0' />
+    </peripheral>
+    <peripheral name='i2c0' used='false' />
+    <peripheral name='i2c1' used='true' />
+    <peripheral name='i2c2' used='false' />
+    <peripheral name='i2c3' used='false' />
+    <peripheral name='can0' used='false' />
+    <peripheral name='can1' used='false' />
+  </peripherals>
+  <pin_muxes>
+    <pin_mux name='MIXED1IO0' value='2' />
+    <pin_mux name='MIXED1IO1' value='2' />
+    <pin_mux name='MIXED1IO2' value='2' />
+    <pin_mux name='MIXED1IO3' value='2' />
+    <pin_mux name='MIXED1IO4' value='2' />
+    <pin_mux name='MIXED1IO5' value='2' />
+    <pin_mux name='MIXED1IO6' value='2' />
+    <pin_mux name='MIXED1IO7' value='2' />
+    <pin_mux name='MIXED1IO8' value='2' />
+    <pin_mux name='MIXED1IO9' value='2' />
+    <pin_mux name='MIXED1IO10' value='2' />
+    <pin_mux name='MIXED1IO11' value='2' />
+    <pin_mux name='MIXED1IO12' value='2' />
+    <pin_mux name='MIXED1IO13' value='2' />
+    <pin_mux name='MIXED1IO15' value='3' />
+    <pin_mux name='MIXED1IO16' value='3' />
+    <pin_mux name='MIXED1IO17' value='3' />
+    <pin_mux name='MIXED1IO18' value='3' />
+    <pin_mux name='MIXED1IO19' value='3' />
+    <pin_mux name='MIXED1IO20' value='3' />
+    <pin_mux name='FLASHIO0' value='3' />
+    <pin_mux name='FLASHIO2' value='3' />
+    <pin_mux name='FLASHIO3' value='3' />
+    <pin_mux name='FLASHIO9' value='3' />
+    <pin_mux name='FLASHIO10' value='3' />
+    <pin_mux name='FLASHIO11' value='3' />
+    <pin_mux name='EMACIO1' value='2' />
+    <pin_mux name='EMACIO2' value='2' />
+    <pin_mux name='EMACIO3' value='2' />
+    <pin_mux name='EMACIO4' value='2' />
+    <pin_mux name='EMACIO5' value='2' />
+    <pin_mux name='EMACIO6' value='2' />
+    <pin_mux name='EMACIO7' value='2' />
+    <pin_mux name='EMACIO8' value='2' />
+    <pin_mux name='EMACIO10' value='2' />
+    <pin_mux name='EMACIO11' value='2' />
+    <pin_mux name='EMACIO12' value='2' />
+    <pin_mux name='EMACIO13' value='2' />
+    <pin_mux name='GENERALIO9' value='3' />
+    <pin_mux name='GENERALIO10' value='3' />
+    <pin_mux name='GENERALIO11' value='3' />
+    <pin_mux name='GENERALIO12' value='3' />
+    <pin_mux name='GENERALIO15' value='1' />
+    <pin_mux name='GENERALIO16' value='1' />
+    <pin_mux name='GENERALIO17' value='1' />
+    <pin_mux name='GENERALIO18' value='1' />
+    <pin_mux name='GENERALIO1' value='1' />
+    <pin_mux name='GENERALIO2' value='1' />
+    <pin_mux name='GENERALIO3' value='1' />
+    <pin_mux name='GENERALIO4' value='1' />
+    <pin_mux name='EMACIO0' value='0' />
+    <pin_mux name='GPLMUX0' value='1' />
+    <pin_mux name='EMACIO9' value='0' />
+    <pin_mux name='GPLMUX9' value='1' />
+    <pin_mux name='MIXED1IO21' value='0' />
+    <pin_mux name='GPLMUX35' value='1' />
+    <pin_mux name='GENERALIO0' value='0' />
+    <pin_mux name='GPLMUX48' value='1' />
+    <pin_mux name='GENERALIO5' value='0' />
+    <pin_mux name='GPLMUX53' value='1' />
+    <pin_mux name='GENERALIO6' value='0' />
+    <pin_mux name='GPLMUX54' value='1' />
+    <pin_mux name='GENERALIO7' value='0' />
+    <pin_mux name='GPLMUX55' value='1' />
+    <pin_mux name='GENERALIO8' value='0' />
+    <pin_mux name='GPLMUX56' value='1' />
+    <pin_mux name='GENERALIO13' value='0' />
+    <pin_mux name='GPLMUX61' value='1' />
+    <pin_mux name='GENERALIO14' value='0' />
+    <pin_mux name='GPLMUX62' value='1' />
+    <pin_mux name='RGMII0USEFPGA' value='0' />
+    <pin_mux name='RGMII1USEFPGA' value='0' />
+    <pin_mux name='NANDUSEFPGA' value='0' />
+    <pin_mux name='QSPIUSEFPGA' value='0' />
+    <pin_mux name='SDMMCUSEFPGA' value='0' />
+    <pin_mux name='USB0USEFPGA' value='0' />
+    <pin_mux name='USB1USEFPGA' value='0' />
+    <pin_mux name='SPIM0USEFPGA' value='0' />
+    <pin_mux name='SPIM1USEFPGA' value='0' />
+    <pin_mux name='SPIS0USEFPGA' value='0' />
+    <pin_mux name='SPIS1USEFPGA' value='0' />
+    <pin_mux name='UART0USEFPGA' value='0' />
+    <pin_mux name='UART1USEFPGA' value='0' />
+    <pin_mux name='I2C0USEFPGA' value='0' />
+    <pin_mux name='I2C1USEFPGA' value='0' />
+    <pin_mux name='I2C2USEFPGA' value='0' />
+    <pin_mux name='I2C3USEFPGA' value='0' />
+    <pin_mux name='CAN0USEFPGA' value='0' />
+    <pin_mux name='CAN1USEFPGA' value='0' />
+  </pin_muxes>
+</hps>
+3 src/id
+@@ -0,0 +1,3 @@
+Do not change the content of this file
+MD5 : 097decb1cf0f6deb6dff9eb9ad05e8e6
+CRC32 : 0x9CE6A02A
+26 src/sdram_io.h
+@@ -0,0 +1,26 @@
+#include <sdram.h>
+
+#define MGR_SELECT_MASK   0xf8000
+
+#define APB_BASE_SCC_MGR	SDR_PHYGRP_SCCGRP_ADDRESS
+#define APB_BASE_PHY_MGR	SDR_PHYGRP_PHYMGRGRP_ADDRESS
+#define APB_BASE_RW_MGR		SDR_PHYGRP_RWMGRGRP_ADDRESS
+#define APB_BASE_DATA_MGR	SDR_PHYGRP_DATAMGRGRP_ADDRESS
+#define APB_BASE_REG_FILE	SDR_PHYGRP_REGFILEGRP_ADDRESS
+#define APB_BASE_MMR		SDR_CTRLGRP_ADDRESS
+
+#define __AVL_TO_APB(ADDR) \
+	((((ADDR) & MGR_SELECT_MASK) == (BASE_PHY_MGR))  ? (APB_BASE_PHY_MGR)  | (((ADDR) >> (14-6)) & (0x1<<6))  | ((ADDR) & 0x3f) : \
+	 (((ADDR) & MGR_SELECT_MASK) == (BASE_RW_MGR))   ? (APB_BASE_RW_MGR)   | ((ADDR) & 0x1fff) : \
+ 	 (((ADDR) & MGR_SELECT_MASK) == (BASE_DATA_MGR)) ? (APB_BASE_DATA_MGR) | ((ADDR) & 0x7ff) : \
+	 (((ADDR) & MGR_SELECT_MASK) == (BASE_SCC_MGR))  ? (APB_BASE_SCC_MGR)  | ((ADDR) & 0xfff) : \
+	 (((ADDR) & MGR_SELECT_MASK) == (BASE_REG_FILE)) ? (APB_BASE_REG_FILE) | ((ADDR) & 0x7ff) : \
+	 (((ADDR) & MGR_SELECT_MASK) == (BASE_MMR))      ? (APB_BASE_MMR)      | ((ADDR) & 0xfff) : \
+	 -1)
+
+#define IOWR_32DIRECT(BASE, OFFSET, DATA) \
+	write_register(HPS_SDR_BASE, __AVL_TO_APB((alt_u32)((BASE) + (OFFSET))), DATA)
+
+#define IORD_32DIRECT(BASE, OFFSET) \
+	read_register(HPS_SDR_BASE, __AVL_TO_APB((alt_u32)((BASE) + (OFFSET))))
+
+10,087 src/sequencer.c
+
+Large diffs are not rendered by default.
+555 src/sequencer.h
+
+Large diffs are not rendered by default.
+174 src/sequencer_auto.h
+@@ -0,0 +1,174 @@
+#define __RW_MGR_ac_mrs1 0x04
+#define __RW_MGR_ac_mrs3 0x06
+#define __RW_MGR_ac_write_bank_0_col_0_nodata_wl_1 0x1C
+#define __RW_MGR_ac_act_1 0x11
+#define __RW_MGR_ac_write_postdata 0x1A
+#define __RW_MGR_ac_act_0 0x10
+#define __RW_MGR_ac_des 0x0D
+#define __RW_MGR_ac_init_reset_1_cke_0 0x01
+#define __RW_MGR_ac_write_data 0x19
+#define __RW_MGR_ac_init_reset_0_cke_0 0x00
+#define __RW_MGR_ac_read_bank_0_1_norden 0x22
+#define __RW_MGR_ac_pre_all 0x12
+#define __RW_MGR_ac_mrs0_user 0x02
+#define __RW_MGR_ac_mrs0_dll_reset 0x03
+#define __RW_MGR_ac_read_bank_0_0 0x1D
+#define __RW_MGR_ac_write_bank_0_col_1 0x16
+#define __RW_MGR_ac_read_bank_0_1 0x1F
+#define __RW_MGR_ac_write_bank_1_col_0 0x15
+#define __RW_MGR_ac_write_bank_1_col_1 0x17
+#define __RW_MGR_ac_write_bank_0_col_0 0x14
+#define __RW_MGR_ac_read_bank_1_0 0x1E
+#define __RW_MGR_ac_mrs1_mirr 0x0A
+#define __RW_MGR_ac_read_bank_1_1 0x20
+#define __RW_MGR_ac_des_odt_1 0x0E
+#define __RW_MGR_ac_mrs0_dll_reset_mirr 0x09
+#define __RW_MGR_ac_zqcl 0x07
+#define __RW_MGR_ac_write_predata 0x18
+#define __RW_MGR_ac_mrs0_user_mirr 0x08
+#define __RW_MGR_ac_ref 0x13
+#define __RW_MGR_ac_nop 0x0F
+#define __RW_MGR_ac_rdimm 0x23
+#define __RW_MGR_ac_mrs2_mirr 0x0B
+#define __RW_MGR_ac_write_bank_0_col_0_nodata 0x1B
+#define __RW_MGR_ac_read_en 0x21
+#define __RW_MGR_ac_mrs3_mirr 0x0C
+#define __RW_MGR_ac_mrs2 0x05
+#define __RW_MGR_CONTENT_ac_mrs1 0x10090006
+#define __RW_MGR_CONTENT_ac_mrs3 0x100B0000
+#define __RW_MGR_CONTENT_ac_write_bank_0_col_0_nodata_wl_1 0x18980000
+#define __RW_MGR_CONTENT_ac_act_1 0x106B0000
+#define __RW_MGR_CONTENT_ac_write_postdata 0x38780000
+#define __RW_MGR_CONTENT_ac_act_0 0x10680000
+#define __RW_MGR_CONTENT_ac_des 0x30780000
+#define __RW_MGR_CONTENT_ac_init_reset_1_cke_0 0x20780000
+#define __RW_MGR_CONTENT_ac_write_data 0x3CF80000
+#define __RW_MGR_CONTENT_ac_init_reset_0_cke_0 0x20700000
+#define __RW_MGR_CONTENT_ac_read_bank_0_1_norden 0x10580008
+#define __RW_MGR_CONTENT_ac_pre_all 0x10280400
+#define __RW_MGR_CONTENT_ac_mrs0_user 0x10080471
+#define __RW_MGR_CONTENT_ac_mrs0_dll_reset 0x10080570
+#define __RW_MGR_CONTENT_ac_read_bank_0_0 0x13580000
+#define __RW_MGR_CONTENT_ac_write_bank_0_col_1 0x1C980008
+#define __RW_MGR_CONTENT_ac_read_bank_0_1 0x13580008
+#define __RW_MGR_CONTENT_ac_write_bank_1_col_0 0x1C9B0000
+#define __RW_MGR_CONTENT_ac_write_bank_1_col_1 0x1C9B0008
+#define __RW_MGR_CONTENT_ac_write_bank_0_col_0 0x1C980000
+#define __RW_MGR_CONTENT_ac_read_bank_1_0 0x135B0000
+#define __RW_MGR_CONTENT_ac_mrs1_mirr 0x100A0006
+#define __RW_MGR_CONTENT_ac_read_bank_1_1 0x135B0008
+#define __RW_MGR_CONTENT_ac_des_odt_1 0x38780000
+#define __RW_MGR_CONTENT_ac_mrs0_dll_reset_mirr 0x100804E8
+#define __RW_MGR_CONTENT_ac_zqcl 0x10380400
+#define __RW_MGR_CONTENT_ac_write_predata 0x38F80000
+#define __RW_MGR_CONTENT_ac_mrs0_user_mirr 0x10080469
+#define __RW_MGR_CONTENT_ac_ref 0x10480000
+#define __RW_MGR_CONTENT_ac_nop 0x30780000
+#define __RW_MGR_CONTENT_ac_rdimm 0x10780000
+#define __RW_MGR_CONTENT_ac_mrs2_mirr 0x10090218
+#define __RW_MGR_CONTENT_ac_write_bank_0_col_0_nodata 0x18180000
+#define __RW_MGR_CONTENT_ac_read_en 0x33780000
+#define __RW_MGR_CONTENT_ac_mrs3_mirr 0x100B0000
+#define __RW_MGR_CONTENT_ac_mrs2 0x100A0218
+
+#define __RW_MGR_READ_B2B_WAIT2 0x6A
+#define __RW_MGR_LFSR_WR_RD_BANK_0_WAIT 0x31
+#define __RW_MGR_REFRESH_ALL 0x14
+#define __RW_MGR_ZQCL 0x06
+#define __RW_MGR_LFSR_WR_RD_BANK_0_NOP 0x22
+#define __RW_MGR_LFSR_WR_RD_BANK_0_DQS 0x23
+#define __RW_MGR_ACTIVATE_0_AND_1 0x0D
+#define __RW_MGR_MRS2_MIRR 0x0A
+#define __RW_MGR_INIT_RESET_0_CKE_0 0x6E
+#define __RW_MGR_LFSR_WR_RD_DM_BANK_0_WAIT 0x45
+#define __RW_MGR_ACTIVATE_1 0x0F
+#define __RW_MGR_MRS2 0x04
+#define __RW_MGR_LFSR_WR_RD_DM_BANK_0_WL_1 0x34
+#define __RW_MGR_MRS1 0x03
+#define __RW_MGR_IDLE_LOOP1 0x7C
+#define __RW_MGR_GUARANTEED_WRITE_WAIT2 0x18
+#define __RW_MGR_MRS3 0x05
+#define __RW_MGR_IDLE_LOOP2 0x7B
+#define __RW_MGR_GUARANTEED_WRITE_WAIT1 0x1E
+#define __RW_MGR_LFSR_WR_RD_BANK_0_DATA 0x24
+#define __RW_MGR_GUARANTEED_WRITE_WAIT3 0x1C
+#define __RW_MGR_RDIMM_CMD 0x7A
+#define __RW_MGR_LFSR_WR_RD_DM_BANK_0_NOP 0x36
+#define __RW_MGR_GUARANTEED_WRITE_WAIT0 0x1A
+#define __RW_MGR_LFSR_WR_RD_DM_BANK_0_DATA 0x38
+#define __RW_MGR_GUARANTEED_READ_CONT 0x53
+#define __RW_MGR_MRS3_MIRR 0x0B
+#define __RW_MGR_IDLE 0x00
+#define __RW_MGR_READ_B2B 0x58
+#define __RW_MGR_INIT_RESET_0_CKE_0_inloop 0x6F
+#define __RW_MGR_LFSR_WR_RD_DM_BANK_0_DQS 0x37
+#define __RW_MGR_GUARANTEED_WRITE 0x17
+#define __RW_MGR_PRECHARGE_ALL 0x12
+#define __RW_MGR_INIT_RESET_1_CKE_0_inloop_1 0x74
+#define __RW_MGR_SGLE_READ 0x7E
+#define __RW_MGR_MRS0_USER_MIRR 0x0C
+#define __RW_MGR_RETURN 0x01
+#define __RW_MGR_LFSR_WR_RD_DM_BANK_0 0x35
+#define __RW_MGR_MRS0_USER 0x07
+#define __RW_MGR_GUARANTEED_READ 0x4B
+#define __RW_MGR_MRS0_DLL_RESET_MIRR 0x08
+#define __RW_MGR_INIT_RESET_1_CKE_0 0x73
+#define __RW_MGR_ACTIVATE_0_AND_1_WAIT2 0x10
+#define __RW_MGR_LFSR_WR_RD_BANK_0_WL_1 0x20
+#define __RW_MGR_MRS0_DLL_RESET 0x02
+#define __RW_MGR_ACTIVATE_0_AND_1_WAIT1 0x0E
+#define __RW_MGR_LFSR_WR_RD_BANK_0 0x21
+#define __RW_MGR_CLEAR_DQS_ENABLE 0x48
+#define __RW_MGR_MRS1_MIRR 0x09
+#define __RW_MGR_READ_B2B_WAIT1 0x60
+#define __RW_MGR_CONTENT_READ_B2B_WAIT2 0x00C680
+#define __RW_MGR_CONTENT_LFSR_WR_RD_BANK_0_WAIT 0x00A680
+#define __RW_MGR_CONTENT_REFRESH_ALL 0x000980
+#define __RW_MGR_CONTENT_ZQCL 0x008380
+#define __RW_MGR_CONTENT_LFSR_WR_RD_BANK_0_NOP 0x00E700
+#define __RW_MGR_CONTENT_LFSR_WR_RD_BANK_0_DQS 0x000C00
+#define __RW_MGR_CONTENT_ACTIVATE_0_AND_1 0x000800
+#define __RW_MGR_CONTENT_MRS2_MIRR 0x008580
+#define __RW_MGR_CONTENT_INIT_RESET_0_CKE_0 0x000000
+#define __RW_MGR_CONTENT_LFSR_WR_RD_DM_BANK_0_WAIT 0x00A680
+#define __RW_MGR_CONTENT_ACTIVATE_1 0x000880
+#define __RW_MGR_CONTENT_MRS2 0x008280
+#define __RW_MGR_CONTENT_LFSR_WR_RD_DM_BANK_0_WL_1 0x00CE00
+#define __RW_MGR_CONTENT_MRS1 0x008200
+#define __RW_MGR_CONTENT_IDLE_LOOP1 0x00A680
+#define __RW_MGR_CONTENT_GUARANTEED_WRITE_WAIT2 0x00CCE8
+#define __RW_MGR_CONTENT_MRS3 0x008300
+#define __RW_MGR_CONTENT_IDLE_LOOP2 0x008680
+#define __RW_MGR_CONTENT_GUARANTEED_WRITE_WAIT1 0x00AC88
+#define __RW_MGR_CONTENT_LFSR_WR_RD_BANK_0_DATA 0x020CE0
+#define __RW_MGR_CONTENT_GUARANTEED_WRITE_WAIT3 0x00EC88
+#define __RW_MGR_CONTENT_RDIMM_CMD 0x009180
+#define __RW_MGR_CONTENT_LFSR_WR_RD_DM_BANK_0_NOP 0x00E700
+#define __RW_MGR_CONTENT_GUARANTEED_WRITE_WAIT0 0x008CE8
+#define __RW_MGR_CONTENT_LFSR_WR_RD_DM_BANK_0_DATA 0x030CE0
+#define __RW_MGR_CONTENT_GUARANTEED_READ_CONT 0x001168
+#define __RW_MGR_CONTENT_MRS3_MIRR 0x008600
+#define __RW_MGR_CONTENT_IDLE 0x080000
+#define __RW_MGR_CONTENT_READ_B2B 0x040E88
+#define __RW_MGR_CONTENT_INIT_RESET_0_CKE_0_inloop 0x000000
+#define __RW_MGR_CONTENT_LFSR_WR_RD_DM_BANK_0_DQS 0x000C00
+#define __RW_MGR_CONTENT_GUARANTEED_WRITE 0x000B68
+#define __RW_MGR_CONTENT_PRECHARGE_ALL 0x000900
+#define __RW_MGR_CONTENT_INIT_RESET_1_CKE_0_inloop_1 0x000080
+#define __RW_MGR_CONTENT_SGLE_READ 0x040F08
+#define __RW_MGR_CONTENT_MRS0_USER_MIRR 0x008400
+#define __RW_MGR_CONTENT_RETURN 0x080680
+#define __RW_MGR_CONTENT_LFSR_WR_RD_DM_BANK_0 0x00CD80
+#define __RW_MGR_CONTENT_MRS0_USER 0x008100
+#define __RW_MGR_CONTENT_GUARANTEED_READ 0x001168
+#define __RW_MGR_CONTENT_MRS0_DLL_RESET_MIRR 0x008480
+#define __RW_MGR_CONTENT_INIT_RESET_1_CKE_0 0x000080
+#define __RW_MGR_CONTENT_ACTIVATE_0_AND_1_WAIT2 0x00A680
+#define __RW_MGR_CONTENT_LFSR_WR_RD_BANK_0_WL_1 0x00CE00
+#define __RW_MGR_CONTENT_MRS0_DLL_RESET 0x008180
+#define __RW_MGR_CONTENT_ACTIVATE_0_AND_1_WAIT1 0x008680
+#define __RW_MGR_CONTENT_LFSR_WR_RD_BANK_0 0x00CD80
+#define __RW_MGR_CONTENT_CLEAR_DQS_ENABLE 0x001158
+#define __RW_MGR_CONTENT_MRS1_MIRR 0x008500
+#define __RW_MGR_CONTENT_READ_B2B_WAIT1 0x00A680
+
+44 src/sequencer_auto_ac_init.c
+@@ -0,0 +1,44 @@
+#include "sequencer_defines.h"
+#include "alt_types.h"
+#if HCX_COMPAT_MODE || ENABLE_INST_ROM_WRITE
+const alt_u32 ac_rom_init_size = 36;
+const alt_u32 ac_rom_init[36] = 
+{
+	0x20700000,
+	0x20780000,
+	0x10080471,
+	0x10080570,
+	0x10090006,
+	0x100a0218,
+	0x100b0000,
+	0x10380400,
+	0x10080469,
+	0x100804e8,
+	0x100a0006,
+	0x10090218,
+	0x100b0000,
+	0x30780000,
+	0x38780000,
+	0x30780000,
+	0x10680000,
+	0x106b0000,
+	0x10280400,
+	0x10480000,
+	0x1c980000,
+	0x1c9b0000,
+	0x1c980008,
+	0x1c9b0008,
+	0x38f80000,
+	0x3cf80000,
+	0x38780000,
+	0x18180000,
+	0x18980000,
+	0x13580000,
+	0x135b0000,
+	0x13580008,
+	0x135b0008,
+	0x33780000,
+	0x10580008,
+	0x10780000
+};
+#endif
+136 src/sequencer_auto_inst_init.c
+@@ -0,0 +1,136 @@
+#include "sequencer_defines.h"
+#include "alt_types.h"
+#if HCX_COMPAT_MODE || ENABLE_INST_ROM_WRITE
+const alt_u32 inst_rom_init_size = 128;
+const alt_u32 inst_rom_init[128] = 
+{
+	0x80000,
+	0x80680,
+	0x8180,
+	0x8200,
+	0x8280,
+	0x8300,
+	0x8380,
+	0x8100,
+	0x8480,
+	0x8500,
+	0x8580,
+	0x8600,
+	0x8400,
+	0x800,
+	0x8680,
+	0x880,
+	0xa680,
+	0x80680,
+	0x900,
+	0x80680,
+	0x980,
+	0x8680,
+	0x80680,
+	0xb68,
+	0xcce8,
+	0xae8,
+	0x8ce8,
+	0xb88,
+	0xec88,
+	0xa08,
+	0xac88,
+	0x80680,
+	0xce00,
+	0xcd80,
+	0xe700,
+	0xc00,
+	0x20ce0,
+	0x20ce0,
+	0x20ce0,
+	0x20ce0,
+	0xd00,
+	0x680,
+	0x680,
+	0x680,
+	0x680,
+	0x60e80,
+	0x61080,
+	0x61080,
+	0x61080,
+	0xa680,
+	0x8680,
+	0x80680,
+	0xce00,
+	0xcd80,
+	0xe700,
+	0xc00,
+	0x30ce0,
+	0x30ce0,
+	0x30ce0,
+	0x30ce0,
+	0xd00,
+	0x680,
+	0x680,
+	0x680,
+	0x680,
+	0x70e80,
+	0x71080,
+	0x71080,
+	0x71080,
+	0xa680,
+	0x8680,
+	0x80680,
+	0x1158,
+	0x6d8,
+	0x80680,
+	0x1168,
+	0x7e8,
+	0x7e8,
+	0x87e8,
+	0x40fe8,
+	0x410e8,
+	0x410e8,
+	0x410e8,
+	0x1168,
+	0x7e8,
+	0x7e8,
+	0xa7e8,
+	0x80680,
+	0x40e88,
+	0x41088,
+	0x41088,
+	0x41088,
+	0x40f68,
+	0x410e8,
+	0x410e8,
+	0x410e8,
+	0xa680,
+	0x40fe8,
+	0x410e8,
+	0x410e8,
+	0x410e8,
+	0x41008,
+	0x41088,
+	0x41088,
+	0x41088,
+	0x1100,
+	0xc680,
+	0x8680,
+	0xe680,
+	0x80680,
+	0x0,
+	0x0,
+	0xa000,
+	0x8000,
+	0x80000,
+	0x80,
+	0x80,
+	0x80,
+	0x80,
+	0xa080,
+	0x8080,
+	0x80080,
+	0x9180,
+	0x8680,
+	0xa680,
+	0x80680,
+	0x40f08,
+	0x80680
+};
+#endif
+117 src/sequencer_defines.h
+@@ -0,0 +1,117 @@
+#ifndef _SEQUENCER_DEFINES_H_
+#define _SEQUENCER_DEFINES_H_
+
+#define AC_ROM_MR1_MIRR 0000000000110
+#define AC_ROM_MR1_OCD_ENABLE 
+#define AC_ROM_MR2_MIRR 0001000011000
+#define AC_ROM_MR3_MIRR 0000000000000
+#define AC_ROM_MR0_CALIB 
+#define AC_ROM_MR0_DLL_RESET_MIRR 0010011101000
+#define AC_ROM_MR0_DLL_RESET 0010101110000
+#define AC_ROM_MR0_MIRR 0010001101001
+#define AC_ROM_MR0 0010001110001
+#define AC_ROM_MR1 0000000000110
+#define AC_ROM_MR2 0001000011000
+#define AC_ROM_MR3 0000000000000
+#define AFI_CLK_FREQ 401
+#define AFI_RATE_RATIO 1
+#define ARRIAVGZ 0
+#define ARRIAV 0
+#define AVL_CLK_FREQ 81
+#define BFM_MODE 0
+#define BURST2 0
+#define CALIBRATE_BIT_SLIPS 0
+#define CALIB_LFIFO_OFFSET 11
+#define CALIB_VFIFO_OFFSET 9
+#define CYCLONEV 1
+#define DDR2 0
+#define DDR3 1
+#define DDRX 1
+#define DM_PINS_ENABLED 1
+#define ENABLE_ASSERT 0
+#define ENABLE_BRINGUP_DEBUGGING 0
+#define ENABLE_DQS_IN_CENTERING 1
+#define ENABLE_DQS_OUT_CENTERING 0
+#define ENABLE_EXPORT_SEQ_DEBUG_BRIDGE 0
+#define ENABLE_INST_ROM_WRITE 1
+#define ENABLE_MARGIN_REPORT_GEN 0
+#define ENABLE_NON_DESTRUCTIVE_CALIB 0
+#define ENABLE_SUPER_QUICK_CALIBRATION 0
+#define ENABLE_TCL_DEBUG 0
+#define FULL_RATE 1
+#define GUARANTEED_READ_BRINGUP_TEST 0
+#define HALF_RATE 0
+#define HARD_PHY 1
+#define HARD_VFIFO 1
+#define HCX_COMPAT_MODE 0
+#define HHP_HPS_SIMULATION 0
+#define HHP_HPS_VERIFICATION 0
+#define HHP_HPS 1
+#define HPS_HW 1
+#define HR_DDIO_OUT_HAS_THREE_REGS 0
+#define IO_DELAY_PER_DCHAIN_TAP 25
+#define IO_DELAY_PER_DQS_EN_DCHAIN_TAP 25
+#define IO_DELAY_PER_OPA_TAP 312
+#define IO_DLL_CHAIN_LENGTH 8
+#define IO_DM_OUT_RESERVE 0
+#define IO_DQDQS_OUT_PHASE_MAX 0
+#define IO_DQS_EN_DELAY_MAX 31
+#define IO_DQS_EN_DELAY_OFFSET 0
+#define IO_DQS_EN_PHASE_MAX 7
+#define IO_DQS_IN_DELAY_MAX 31
+#define IO_DQS_IN_RESERVE 4
+#define IO_DQS_OUT_RESERVE 4
+#define IO_DQ_OUT_RESERVE 0
+#define IO_IO_IN_DELAY_MAX 31
+#define IO_IO_OUT1_DELAY_MAX 31
+#define IO_IO_OUT2_DELAY_MAX 0
+#define IO_SHIFT_DQS_EN_WHEN_SHIFT_DQS 0
+#define LPDDR1 0
+#define LPDDR2 0
+#define LRDIMM 0
+#define MARGIN_VARIATION_TEST 0
+#define MAX_LATENCY_COUNT_WIDTH 5
+#define MEM_ADDR_WIDTH 13
+#define MULTIPLE_AFI_WLAT 0
+#define NUM_SHADOW_REGS 1
+#define QDRII 0
+#define QUARTER_RATE 0
+#define RDIMM 0
+#define READ_AFTER_WRITE_CALIBRATION 1
+#define READ_VALID_FIFO_SIZE 16
+#define REG_FILE_INIT_SEQ_SIGNATURE 0x55550482
+#define RLDRAM3 0
+#define RLDRAMII 0
+#define RLDRAMX 0
+#define RW_MGR_MEM_ADDRESS_MIRRORING 0
+#define RW_MGR_MEM_ADDRESS_WIDTH 15
+#define RW_MGR_MEM_BANK_WIDTH 3
+#define RW_MGR_MEM_CHIP_SELECT_WIDTH 1
+#define RW_MGR_MEM_CLK_EN_WIDTH 1
+#define RW_MGR_MEM_CONTROL_WIDTH 1
+#define RW_MGR_MEM_DATA_MASK_WIDTH 4
+#define RW_MGR_MEM_DATA_WIDTH 32
+#define RW_MGR_MEM_DQ_PER_READ_DQS 8
+#define RW_MGR_MEM_DQ_PER_WRITE_DQS 8
+#define RW_MGR_MEM_IF_READ_DQS_WIDTH 4
+#define RW_MGR_MEM_IF_WRITE_DQS_WIDTH 4
+#define RW_MGR_MEM_NUMBER_OF_CS_PER_DIMM 1
+#define RW_MGR_MEM_NUMBER_OF_RANKS 1
+#define RW_MGR_MEM_ODT_WIDTH 1
+#define RW_MGR_MEM_VIRTUAL_GROUPS_PER_READ_DQS 1
+#define RW_MGR_MEM_VIRTUAL_GROUPS_PER_WRITE_DQS 1
+#define RW_MGR_MR0_BL 1
+#define RW_MGR_MR0_CAS_LATENCY 7
+#define RW_MGR_TRUE_MEM_DATA_MASK_WIDTH 4
+#define RW_MGR_WRITE_TO_DEBUG_READ 1.0
+#define SKEW_CALIBRATION 0
+#define STATIC_FULL_CALIBRATION 1
+#define STATIC_SIM_FILESET 0
+#define STATIC_SKIP_MEM_INIT 0
+#define STRATIXV 0
+#define TRACKING_ERROR_TEST 0
+#define TRACKING_WATCH_TEST 0
+#define USE_DQS_TRACKING 1
+#define USE_SHADOW_REGS 0
+
+#endif /* _SEQUENCER_DEFINES_H_ */
+BIN +2.63 KB src/soc_system_hps_0.hiof
+Binary file not shown.
+9 src/system.h
+@@ -0,0 +1,9 @@
+#define SEQUENCER_DATA_MGR_INST_BASE 0x60000
+#define SEQUENCER_PHY_MGR_INST_BASE 0x48000
+#define SEQUENCER_PTR_MGR_INST_BASE 0x40000
+#define SEQUENCER_RAM_BASE 0x20000
+#define SEQUENCER_ROM_BASE 0x10000
+#define SEQUENCER_RW_MGR_INST_BASE 0x50000
+#define SEQUENCER_SCC_MGR_INST_BASE 0x58000
+#define SEQUENCER_REG_FILE_INST_BASE 0x70000
+#define SEQUENCER_TIMER_INST_BASE 0x78000
+864 src/tclrpt.c
